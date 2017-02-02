@@ -1,2 +1,5 @@
-# CS2810 - Arduino
-This is the repo for the Arduino code. Changes to the Arduino libraries and main code should go here. Make sure to run `git checkout arduino` after cloning the repo, to make certain you are on the correct branch. Make whatever changes and run `git pull`. If there are no conflicts, simply run `git push`, otherwise run `git checkout -b arduino-<myname>-<mychange>`. Make whatever changes necessary, commit, and run the following command `git push --set-upstream origin arduino-<myname>-<mychange>` 
+
+# CS2810
+
+This is the master branch. Do not push anything directly to the master branch. It will be maintained through pull requests and merges after changes are proven to be working.
+
