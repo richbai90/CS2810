@@ -1,0 +1,104 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# GEOTHERM
+
+Geothermal API allows us to submit temperature readings and request the same
+
+## API [/api]
+
+### List all readings since date [GET /api?date=2015-08-05:00:00:00]
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "sensor": 2,
+                    "Location": "Upstairs"
+                    "taken": "2015-08-05T06:40:51.620Z",
+                    "temp": "22.98" 
+                }
+            ]
+            
+### List all readings within a date range [GET /api?from=2015-08-05:00:00:00&to=2015-08-05:00:00:00]
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "sensor": 2,
+                    "Location": "Upstairs"
+                    "taken": "2015-08-05T06:40:51.620Z",
+                    "temp": "22.98" 
+                }
+            ]
+            
+### List all readings from a sensor [GET /api?sensor=2]
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "sensor": 2,
+                    "Location": "Upstairs"
+                    "taken": "2015-08-05T06:40:51.620Z",
+                    "temp": "22.98" 
+                }
+            ]
+            
+### List all readings from a particular location [GET /api?location=upstairs]
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "sensor": 2,
+                    "Location": "Upstairs"
+                    "taken": "2015-08-05T06:40:51.620Z",
+                    "temp": "22.98" 
+                }
+            ]
+            
+### List details for a specific reading[GET /api/2]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "sensor": 1,
+                "Location": "Basement"
+                "taken": "2015-08-05T08:40:51.620Z",
+                "temp": "22.98"
+            }
+
+
+### Create a New Entry [POST]
+
+You may add a reading using this action. It takes a JSON
+object containing a sensor id and a temperature
+
++ Request (application/json)
+
+        {
+            "sensor": 1,
+            "temp": "22.98"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /api/readings/2
+
+    + Body
+
+            {
+                "sensor": 1,
+                "Location": "Basement"
+                "taken": "2015-08-05T08:40:51.620Z",
+                "temp": "22.98"
+            }
