@@ -14,7 +14,7 @@ const GLOBALS = {
 
 module.exports = merge(config, {
   debug: false,
-  devtool: 'cheap-module-source-map',
+  devtool: 'inline-source-map',
   entry: {
     application: 'production',
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux']
@@ -38,11 +38,11 @@ module.exports = merge(config, {
       output: {
         comments: false
       },
-      sourceMap: false
+      sourceMap: true
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-      debug: false
+      debug: true
     }),
     new ExtractTextPlugin({
       filename: 'css/app.css',

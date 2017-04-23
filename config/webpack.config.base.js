@@ -3,8 +3,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  devtool: 'inline-source-map',
   output: {
     filename: 'js/[name].js',
     path: path.resolve(__dirname, '../build/client'),
@@ -24,14 +26,20 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'  // fetch API
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',  // fetch API
+      d3: 'd3'
     }),
     // Shared code
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'js/vendor.bundle.js',
       minChunks: Infinity
-    })
+    }),
+
+    new CopyWebpackPlugin([
+      { from: path.resolve(__dirname, '../src/server') },
+      { from: path.resolve(__dirname, '../src/client/scripts/plotly-latest.min.js'), to: path.resolve(__dirname, '../build/client/js/plotly.min.js')}
+    ])
   ],
   module: {
     loaders: [
